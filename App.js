@@ -16,7 +16,7 @@ import {
 import * as Location from 'expo-location';
 import { LinearGradient } from 'expo-linear-gradient';
 
-const API_KEY = 'YOUR_API_KEY_HERE';
+const API_KEY = '84c6939eb3cc184ff59a5f63b2c13827';
 
 export default function App() {
   const [city, setCity] = useState('');
