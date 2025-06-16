@@ -10,21 +10,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "babel-plugin-dotenv": "^0.1.1",
     "expo": "~53.0.10",
-<<<<<<< HEAD
     "expo-linear-gradient": "~14.1.5",
     "expo-location": "~18.1.5",
     "expo-status-bar": "~2.2.3",
     "lottie-react-native": "^7.2.2",
     "react": "19.0.0",
     "react-native": "0.79.3"
-=======
-    "expo-status-bar": "~2.2.3",
-    "react": "19.0.0",
-    "react-native": "0.79.3",
-    "expo-location": "~18.1.5",
-    "expo-linear-gradient": "~14.1.5"
->>>>>>> c33b918c8d294bf2598b6060aa4ce01ab10ddf11
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
