@@ -11,12 +11,10 @@ import {
   ScrollView,
   Keyboard,
   TouchableWithoutFeedback,
-  useColorScheme,
 } from 'react-native';
 import * as Location from 'expo-location';
 import { LinearGradient } from 'expo-linear-gradient';
-
-const API_KEY = '84c6939eb3cc184ff59a5f63b2c13827';
+import { OPENWEATHER_API_KEY } from '@env';
 
 export default function App() {
   const [city, setCity] = useState('');
@@ -38,7 +36,7 @@ export default function App() {
       const { latitude, longitude } = location.coords;
 
       const currentRes = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${OPENWEATHER_API_KEY}&units=metric`
       );
       const currentData = await currentRes.json();
       setCurrentWeather(currentData);
@@ -54,7 +52,7 @@ export default function App() {
   const fetchForecast = async (cityName) => {
     try {
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${OPENWEATHER_API_KEY}&units=metric`
       );
       const data = await res.json();
       if (res.ok) {
@@ -62,7 +60,7 @@ export default function App() {
           item.dt_txt.includes('12:00:00')
         );
         setForecast(daily);
-        setHourlyForecast(data.list.slice(0, 8)); // next 24 hours
+        setHourlyForecast(data.list.slice(0, 8));
         setErrorMsg(null);
       } else {
         setErrorMsg('City not found');
@@ -84,7 +82,7 @@ export default function App() {
   const fetchCityWeather = async (cityName) => {
     try {
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${OPENWEATHER_API_KEY}&units=metric`
       );
       const data = await res.json();
       if (res.ok) {
@@ -158,7 +156,6 @@ export default function App() {
             <Text style={styles.errorText}>{errorMsg}</Text>
           )}
 
-          {/* Hourly Forecast */}
           {hourlyForecast.length > 0 && (
             <LinearGradient colors={getBoxGradientColors()} style={styles.forecastBox}>
               <Text style={styles.forecastTitle}>Hourly Forecast</Text>
@@ -187,7 +184,6 @@ export default function App() {
             </LinearGradient>
           )}
 
-          {/* 5 day forecast */}
           {forecast && (
             <LinearGradient colors={getBoxGradientColors()} style={styles.forecastBox}>
               <Text style={styles.forecastTitle}>5-Day Forecast</Text>
@@ -216,7 +212,6 @@ export default function App() {
             </LinearGradient>
           )}
 
-          {/* Weather Details */}
           {currentWeather && (
             <LinearGradient colors={getBoxGradientColors()} style={styles.detailsBox}>
               <Text style={styles.detailsTitle}>Current Details</Text>
@@ -239,7 +234,6 @@ export default function App() {
   );
 }
 
-{/* styling */}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
